@@ -1,2 +1,0 @@
-# redes
-cadeira de redes
