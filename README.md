@@ -5,7 +5,7 @@
 - Atividades*
 - Projetos 
 
-  [INICIADO] - Segurança P2P
+  [OK] - Segurança P2P
   
   [OK] - Servidor Web - get with http /1.1
 
@@ -13,7 +13,7 @@
 
 ## Projeto 1: Segurança numa Arquitetura P2P
 
-> Iniciado
+> Finalizado ✅
 
 
 
