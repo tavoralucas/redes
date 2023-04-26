@@ -1,3 +1,8 @@
+# Este código é propriedade de @tavoralucas.
+# Todos os direitos são reservados.
+# Qualquer uso não autorizado deste código é estritamente proibido.
+# percebi algumas pessoas copiando durante alguns momentos adicionei o ofuscamento para evitar cópiaas
+
 import socket
 import os
 import mimetypes
@@ -89,7 +94,7 @@ def handle_request(client_connection):
     # Abre o arquivo solicitado pelo cliente
     try:
         content_type, encoding = mimetypes.guess_type(path)
-        is_text = content_type.startswith('text/')
+        is_text = content_type is not None and content_type.startswith('text/')
         file = open(path, 'r' if is_text else 'rb')
         content = file.read()
         file.close()

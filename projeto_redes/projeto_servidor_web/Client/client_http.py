@@ -18,18 +18,27 @@ while mensagem != '\x18':
     response = mySocket.listen()
 
     response_lines = response.split('\r\n')
-    status, content_type, content_length, content = response_lines[:4]
+    status, content_type, content_length = response_lines[:3]
+    data = response_lines[-1].encode('utf-8')  # Assume que o último item é o corpo da resposta
+
     print(status)
     print(content_type)
     print(content_length)
-    print(content)
+
     is_text = content_type.find('text') != -1
-    extension = mimetypes.guess_extension(content_type.split(" ")[1])
-    print(extension)
-    file = open(f'./response{extension}', 'w')
-    file.write(content)
-    file.close()
+
+    if not is_text:  # Resposta é um arquivo binário
+        extension = mimetypes.guess_extension(content_type.split(" ")[1])
+        file = open(f'./response{extension}', 'wb')  # Abre arquivo binário para escrita
+        file.write(data)
+        file.close()
+    else:  # Resposta é um arquivo de texto
+        content = data.decode('utf-8')
+        extension = mimetypes.guess_extension(content_type.split(" ")[1])
+        file = open(f'./response{extension}', 'w')  # Abre arquivo de texto para escrita
+        file.write(content)
+        file.close()
+        print(content)
 
     mensagem = input()
     mySocket.close_connection()
-
